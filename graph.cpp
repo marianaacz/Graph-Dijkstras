@@ -26,12 +26,6 @@ graph::graph(){
   }
 }
 
-// Function Name:    addEdge
-// Purpose:       assert that the source and target are less than the max and build the adjancency matrix 
-// Parameters:      int source, int target, int cost, int mileage
-// Returns:      void
-// Pre-conditions:   none
-// Post-conditions:none
 void graph::addEdge(int source, int target, int cost, int mileage) {
     assert(source < MAX); //Assert that source and target are smaller than size
     assert(target < MAX);
@@ -40,34 +34,17 @@ void graph::addEdge(int source, int target, int cost, int mileage) {
     mileage_edges[source][target] = mileage;
 }
 
-// Function Name:    addVertex
-// Purpose:       add the vertices to a new variable label
-// Parameters:     const string &label
-// Returns:      void
-// Pre-conditions:   none
-// Post-conditions:none
 void graph::addVertex(const string &label) {
     labels[vertices++] = label;
 }
 
-// Function Name:    edge
-// Purpose:       assert source and target are smaller than the size and return the adjancency matrix
-// Parameters:    int source, int target
-// Returns:      edges[source][target]
-// Pre-conditions:   none
-// Post-conditions:none
+
 bool graph::edge(int source, int target) const {
     assert(source < size());
     assert(target < size());
     return edges[source][target];
 }
 
-// Function Name:    neighbors
-// Purpose:       make a set of integers, assert that the vertex is smaller than the size and doo a loop that to insert them
-// Parameters:    int vertex
-// Returns:      answer
-// Pre-conditions:   if edges[vertex][i] then insert answer
-// Post-conditions:none
 set<int> graph::neighbors(int vertex) const {
     set<int> answer;
     int i;
@@ -81,24 +58,12 @@ set<int> graph::neighbors(int vertex) const {
     }
 }
 
-// Function Name:    removeEdge
-// Purpose:        assert that source and target are smaller than size and remove edges by making them false
-// Parameters:    int source, int target
-// Returns:      none (void)
-// Pre-conditions:   none
-// Post-conditions: none
 void graph::removeEdge(int source, int target) {
     assert(source < size());
     assert(target < size());
     edges[source][target] = false;
 }
 
-// Function Name:    mileage
-// Purpose:        assert that source and target are smaller than size and see if there is a source and a target if not return infinity
-// Parameters:    int source, int target
-// Returns:      mileage_edges[source][target] or INFINITY
-// Pre-conditions:   if the edge has a source and target 
-// Post-conditions: none
 int graph::mileage(int source, int target) {
     assert(source < size());
     assert(target < size());
@@ -109,12 +74,6 @@ int graph::mileage(int source, int target) {
     }
 }
 
-// Function Name:    costF
-// Purpose:        assert that source and target are smaller than size and see if there is a source and a target if not return infinity
-// Parameters:    int source, int target
-// Returns:      cost_edges[source][target] or INFINITY
-// Pre-conditions:   if the edge has a source and target 
-// Post-conditions: none
 int graph::costF(int source, int target) {
     assert(source < size());
     assert(target < size());
@@ -125,12 +84,7 @@ int graph::costF(int source, int target) {
     }
 }
 
-// Function Name:    vertex
-// Purpose:        loop through and see if labels at i is the same as label then rerurn i 
-// Parameters:   string label
-// Returns:      int i 
-// Pre-conditions:   if labels at i is the same as label then rerurn i 
-// Post-conditions: none
+
 int graph::vertex(string label) {
     for (int i = 0; i < MAX; ++i) {
         if (labels[i] == label) {
@@ -140,12 +94,6 @@ int graph::vertex(string label) {
     return INFINITY;
 }
 
-// Function Name:    print
-// Purpose:        i made this function but i don't really use it, but the purpose was to print all the flights again in alphabetical order and it helped me see what I was doing with the code and if it was working 
-// Parameters:   none
-// Returns:      none void 
-// Pre-conditions:   order it alphabetically -> see which letter is less than the next one 
-// Post-conditions: none
 void graph::print() { // print all edges
     // alphabetic
     string alpha_labels[MAX] = labels;
@@ -177,12 +125,6 @@ void graph::print() { // print all edges
     }
 }
 
-// Function Name:    shortestPath
-// Purpose:      find the shortest path by cost of all the flights 
-// Parameters:   string source
-// Returns:      none
-// Pre-conditions:   yes but too many to put here 
-// Post-conditions: none
 void graph::shortestPath(string source) { // fills matrix up
   int start = vertex(source);
   int *d = new int[size()]; //dest
@@ -283,18 +225,11 @@ void graph::shortestPath(string source) { // fills matrix up
     }
   }
 
-//delete d and p arrays 
-
   delete[] d;
   delete[] p;
 }
 
-// Function Name:    is_allowed_vertex
-// Purpose:      see if it is an allowed vertex or not 
-// Parameters:   set<int> verts, int vertex
-// Returns:      true or alse 
-// Pre-conditions:   if there is a vertex and is not equal to the end then true if not false
-// Post-conditions: none
+
 bool graph::is_allowed_vertex(set<int> verts, int vertex) {
     if (verts.find(vertex) != verts.end()) {
         return true;
