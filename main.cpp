@@ -47,7 +47,6 @@ int main() {
     
     graph flights; //graph
     read_data(file, flights); //read the file and store it in the graph flights
-     // flights.print();
     cout << "Enter source: (three letter abbreviation)" << endl;
     cin >> sourcePlace; //get place input 
     
